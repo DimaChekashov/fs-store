@@ -1,7 +1,9 @@
 package main
 
 import (
+    "github.com/joho/godotenv"
 	"log"
+	"os"
 	"product-service/internal/handlers"
 	"product-service/internal/repository"
 
@@ -9,6 +11,11 @@ import (
 )
 
 func main() {
+    err := godotenv.Load()
+    if err != nil {
+        log.Println("No .env file found, using system environment variables")
+    }
+
 	repo := repository.NewInMemoryProductRepository()
 
 	productHandler := handlers.NewProductHandler(repo)
@@ -24,8 +31,9 @@ func main() {
 		})
 	})
 
-	log.Println("Product service started on port 8080")
-	if err := r.Run(":8080"); err != nil {
+	port := os.Getenv("SERVER_PORT")
+	log.Println("Product service started on port", port)
+	if err := r.Run(":" + port); err != nil {
 		log.Fatal("Failed to start server:", err)
 	}
 }

@@ -30,3 +30,19 @@ func (h *ProductHandler) GetAllProducts(c *gin.Context) {
 		"count": len(products),
 	})
 }
+
+func (h *ProductHandler) GetProduct(c *gin.Context) {
+
+}
+
+func (h *ProductHandler) CreateProduct(c *gin.Context) {
+
+}
+
+func (h *ProductHandler) UpdateProduct(c *gin.Context) {
+
+}
+
+func (h *ProductHandler) DeleteProduct(c *gin.Context) {
+
+}

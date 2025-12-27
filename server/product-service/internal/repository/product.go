@@ -8,6 +8,10 @@ import (
 
 type ProductRepository interface {
 	GetAll() ([]models.Product, error)
+	// GetByID(id string) (*models.Product, error)
+	// Create(product models.Product) (*models.Product, error)
+	// Update(id string, product models.Product) (*models.Product, error)
+	// Delete(id string) error
 }
 
 type InMemoryProductRepository struct {
@@ -32,3 +36,19 @@ func (r *InMemoryProductRepository) GetAll() ([]models.Product, error) {
 
 	return products, nil
 }
+
+// func GetByID(id string) (*models.Product, error) {
+
+// }
+
+// func Create(product models.Product) (*models.Product, error) {
+
+// }
+
+// func Update(id string, product models.Product) (*models.Product, error) {
+
+// }
+
+// func Delete(id string) error {
+
+// }
