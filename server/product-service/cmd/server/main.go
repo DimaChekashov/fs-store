@@ -1,9 +1,10 @@
 package main
 
 import (
-    "github.com/joho/godotenv"
+	"github.com/joho/godotenv"
 	"log"
 	"os"
+	"product-service/internal/config"
 	"product-service/internal/handlers"
 	"product-service/internal/repository"
 
@@ -11,10 +12,15 @@ import (
 )
 
 func main() {
-    err := godotenv.Load()
-    if err != nil {
-        log.Println("No .env file found, using system environment variables")
-    }
+	err := godotenv.Load()
+	if err != nil {
+		log.Println("No .env file found, using system environment variables")
+	}
+
+	if err := config.InitDB(); err != nil {
+		log.Fatal("Failed to connect to database:", err)
+	}
+    defer config.CloseDB()
 
 	repo := repository.NewInMemoryProductRepository()
 
